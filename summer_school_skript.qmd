@@ -5,4 +5,25 @@ format: html
 editor: visual
 ---
 
-## Header 1 test
+#working directory
+> setwd("C:/Users/Lenovo/Desktop/ZHAW-Master/1 ZHAW Master Martikelnr. 18-661-702/3. Semester/Summer School/summer_school/data")
+
+
+#remove objects
+rm(list = ls())
+
+#library
+pkgCheck <- function(x){ 
+  if (!require(x,character.only = TRUE)){
+    install.packages(x,dependencies=TRUE)
+    if(!require(x,character.only = TRUE)) {
+      stop()
+    }
+  }
+}
+pkgCheck("readr")
+pkgCheck("dplyr")
+pkgCheck("tidyr")
+
+datasmallplot_coverage <- read_delim("SSBM_Flora_Sonnenhof_v.02.csv", delim=";")
+datasmallplot_header <- read_delim("SSBM_Flora_Sonnenhof_v.02_header.csv", delim=";")
