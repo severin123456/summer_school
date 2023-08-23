@@ -1,12 +1,5 @@
----
-title: "summer_school_skript"
-author: "Severin Aicher"
-format: html
-editor: visual
----
-
 #working directory
-> setwd("C:/Users/Lenovo/Desktop/ZHAW-Master/1 ZHAW Master Martikelnr. 18-661-702/3. Semester/Summer School/summer_school/data")
+setwd("C:/Users/Lenovo/Desktop/ZHAW-Master/1 ZHAW Master Martikelnr. 18-661-702/3. Semester/Summer School/summer_school/data")
 
 
 #remove objects
@@ -25,5 +18,22 @@ pkgCheck("readr")
 pkgCheck("dplyr")
 pkgCheck("tidyr")
 
-datasmallplot_coverage <- read_delim("SSBM_Flora_Sonnenhof_v.02.csv", delim=";")
+datasmallplot_coverage <-read_delim("SSBM_Flora_Sonnenhof_v.02.csv", delim=";")
 datasmallplot_header <- read_delim("SSBM_Flora_Sonnenhof_v.02_header.csv", delim=";")
+datasmallplot_coverage_23 <-read_delim("SSBM_Flora_Sonnenhof_2023.csv", delim=";")
+datasmallplot_header23 <- read_delim("SSBM_Flora_Sonnenhof_2023_header.csv", delim=";")
+eive <- read_delim("EIVE_Paper_1.0_SM_08_R1_new.csv", delim=";")
+
+#cleaning the data
+datasmallplot_header <- datasmallplot_header[-c(37,38),]
+
+#transposing
+datasmallplot_coverage_longer <- datasmallplot_coverage %>%
+  pivot_longer(cols = -1, names_to = "PlotID", values_to = "Value") %>%
+  rename(Header = 1)
+
+#joining the datasets 
+joined_data <- inner_join(datasmallplot_coverage_longer,datasmallplot_header, by="PlotID")
+
+
+
