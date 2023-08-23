@@ -1,6 +1,6 @@
 ---
 title: "summer_school_skript"
-author: "Severin Aicher"
+author: "Severin Aicher, Agnieszka Mankiewicz, Grzegorz Ostrowski"
 format: html
 editor: visual
 ---
